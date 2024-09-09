@@ -1,5 +1,4 @@
-﻿// ReSharper disable PropertyCanBeMadeInitOnly.Global
-// ReSharper disable UnusedAutoPropertyAccessor.Global
+﻿// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 using Newtonsoft.Json.Linq;
 
@@ -353,12 +352,12 @@ public class DailyForecast
 
 public class WeatherData
 {
-    public double Temperature { get; set; }
-    public double Humidity { get; set; }
-    public string? WeatherCondition { get; set; }
-    public double WindSpeed { get; set; }
+    public double Temperature { get; init; }
+    public double Humidity { get; init; }
+    public string? WeatherCondition { get; init; }
+    public double WindSpeed { get; init; }
     public double MaxTemp { get; set; }
     public double MinTemp { get; set; }
-    public double Precipitation { get; set; }
-    public List<DailyForecast> DailyForecasts { get; set; } = [];
+    public double Precipitation { get; init; }
+    public List<DailyForecast> DailyForecasts { get; init; } = [];
 }
