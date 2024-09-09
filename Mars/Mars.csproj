@@ -24,7 +24,7 @@
         <ApplicationTitle>Mars</ApplicationTitle>
 
         <!-- App Identifier -->
-        <ApplicationId>com.companyname.mars</ApplicationId>
+        <ApplicationId>dev.thoq.mars</ApplicationId>
 
         <!-- Versions -->
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

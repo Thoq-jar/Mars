@@ -1,69 +1,125 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
+<!-- ReSharper disable Xaml.BindingWithContextNotResolved -->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Mars.MainPage">
+             x:Class="Mars.MainPage"
+             BackgroundColor="DarkSlateBlue">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ForecastLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ScrollView>
         <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25"
+            Padding="20,0"
+            Spacing="20"
             HorizontalOptions="Center"
             VerticalOptions="CenterAndExpand">
 
             <Label
+                x:Name="PageTitle"
                 Text="Mars Weather"
-                FontSize="60"
+                FontSize="25"
                 FontAttributes="Bold"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+
+            <Label
+                x:Name="Status"
+                FontSize="15"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
 
             <Image
                 x:Name="WeatherIcon"
                 HeightRequest="150"
                 Aspect="AspectFit"
-                SemanticProperties.Description="Current weather icon" />
+                SemanticProperties.Description="Current weather icon"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
 
             <Label
                 x:Name="Temperature"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level2" />
+                FontSize="15"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
 
             <Label
                 x:Name="Humidity"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level2" />
+                FontSize="15"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
 
             <Label
                 x:Name="Condition"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level2" />
+                FontSize="15"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
 
             <Label
                 x:Name="WindSpeed"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level2" />
-
-            <Label
-                x:Name="MinTemp"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level2" />
-
-            <Label
-                x:Name="MaxTemp"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level2" />
+                FontSize="15"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
 
             <Label
                 x:Name="Precipitation"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level2" />
-            <Label
-                x:Name="Status"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level2" />
+                FontSize="15"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
 
+            <Label
+                x:Name="ForecastLabel"
+                FontSize="15"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+
+            <CollectionView x:Name="ForecastCollectionView"
+                            HorizontalOptions="Center"
+                            VerticalOptions="CenterAndExpand">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Padding="10">
+                            <Label
+                                x:Name="WeekdayForecast"
+                                FontSize="{Binding FontSize}"
+                                Text="{Binding Weekday}"
+                                Style="{StaticResource ForecastLabelStyle}"
+                                TextColor="{Binding FontColor}"
+                                HorizontalOptions="StartAndExpand" />
+
+                            <Label
+                                x:Name="WeatherConditionForecast"
+                                FontSize="{Binding FontSize}"
+                                Text="{Binding WeatherCondition}"
+                                TextColor="{Binding FontColor}"
+                                Style="{StaticResource ForecastLabelStyle}"
+                                HorizontalOptions="StartAndExpand" />
+
+                            <Label
+                                x:Name="MaxTempForecast"
+                                FontSize="{Binding FontSize}"
+                                Text="{Binding MaxTemp, StringFormat='Max: {0:F2}°F'}"
+                                Style="{StaticResource ForecastLabelStyle}"
+                                TextColor="{Binding FontColor}"
+                                HorizontalOptions="EndAndExpand" />
+
+                            <Label
+                                x:Name="MinTempForecast"
+                                FontSize="{Binding FontSize}"
+                                Text="{Binding MinTemp, StringFormat='Min: {0:F2}°F'}"
+                                Style="{StaticResource ForecastLabelStyle}"
+                                TextColor="{Binding FontColor}"
+                                HorizontalOptions="EndAndExpand" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

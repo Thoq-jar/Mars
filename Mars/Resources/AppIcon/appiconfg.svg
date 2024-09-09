@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="100" viewBox="0 0 200 100">
     <style>
         .mars-text {
-        font-family: Arial, sans-serif;
+        font-family: sans-serif;
         font-size: 75px;
         fill: #ffffff;
         stroke-width: 2px;
         }
     </style>
 
-    <text class="mars-text" x="50%" y="75%" text-anchor="middle">Mars</text>
+    <text class="mars-text" x="50%" y="75%" text-anchor="middle">M</text>
 </svg>
