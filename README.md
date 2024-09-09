@@ -4,7 +4,7 @@ A Simple dashboard with various utilities written with Maui and C#
 
 ## Setup
 **Prerequisites:**
-- .NET 8.0
+- .NET 9.0
 - .NET IDE (e.g. Microsoft [Jetbrains Rider](https://www.jetbrains.com/rider/) / [Visual Studio 2022](https://visualstudio.microsoft.com))
 
 ### Any OS:
