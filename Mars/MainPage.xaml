@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!-- ReSharper disable Xaml.BindingWithContextNotResolved -->
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mars="clr-namespace:Mars"
              x:Class="Mars.MainPage"
              BackgroundColor="DarkSlateBlue">
 
@@ -81,40 +82,37 @@
 
             <CollectionView x:Name="ForecastCollectionView"
                             HorizontalOptions="Center"
-                            VerticalOptions="CenterAndExpand">
+                            VerticalOptions="CenterAndExpand"
+                            x:DataType="mars:DailyForecast">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Orientation="Horizontal" Padding="10">
                             <Label
-                                x:Name="WeekdayForecast"
-                                FontSize="{Binding FontSize}"
                                 Text="{Binding Weekday}"
-                                Style="{StaticResource ForecastLabelStyle}"
+                                FontSize="{Binding FontSize}"
                                 TextColor="{Binding FontColor}"
+                                Style="{StaticResource ForecastLabelStyle}"
                                 HorizontalOptions="StartAndExpand" />
 
                             <Label
-                                x:Name="WeatherConditionForecast"
-                                FontSize="{Binding FontSize}"
                                 Text="{Binding WeatherCondition}"
                                 TextColor="{Binding FontColor}"
+                                FontSize="{Binding FontSize}"
                                 Style="{StaticResource ForecastLabelStyle}"
                                 HorizontalOptions="StartAndExpand" />
 
                             <Label
-                                x:Name="MaxTempForecast"
-                                FontSize="{Binding FontSize}"
                                 Text="{Binding MaxTemp, StringFormat='Max: {0:F2}°F'}"
-                                Style="{StaticResource ForecastLabelStyle}"
                                 TextColor="{Binding FontColor}"
+                                FontSize="{Binding FontSize}"
+                                Style="{StaticResource ForecastLabelStyle}"
                                 HorizontalOptions="EndAndExpand" />
 
                             <Label
-                                x:Name="MinTempForecast"
-                                FontSize="{Binding FontSize}"
                                 Text="{Binding MinTemp, StringFormat='Min: {0:F2}°F'}"
-                                Style="{StaticResource ForecastLabelStyle}"
                                 TextColor="{Binding FontColor}"
+                                FontSize="{Binding FontSize}"
+                                Style="{StaticResource ForecastLabelStyle}"
                                 HorizontalOptions="EndAndExpand" />
                         </StackLayout>
                     </DataTemplate>

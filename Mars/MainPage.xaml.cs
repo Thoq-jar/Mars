@@ -1,6 +1,4 @@
-﻿// ReSharper disable UnusedAutoPropertyAccessor.Global
-
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 
 namespace Mars;
 
@@ -13,6 +11,7 @@ public partial class MainPage
         InitializeComponent();
         _httpClient = new HttpClient();
         _ = GetWeather();
+        BindingContext = this;
     }
 
     private async Task GetWeather()
@@ -67,13 +66,9 @@ public partial class MainPage
                 foreach (var forecast in weatherData.DailyForecasts.Where(_ => isDesktop))
                 {
                     forecast.FontColor = fontColor;
-                }
-
-                foreach (var forecast in weatherData.DailyForecasts.Where(_ => isDesktop))
-                {
                     forecast.FontSize *= 2;
                 }
-
+                
                 ForecastCollectionView.ItemsSource = weatherData.DailyForecasts;
             }
             else
@@ -350,14 +345,20 @@ public class DailyForecast
     public Color FontColor { get; set; } = Colors.Black;
 }
 
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+
 public class WeatherData
 {
     public double Temperature { get; init; }
     public double Humidity { get; init; }
     public string? WeatherCondition { get; init; }
+
     public double WindSpeed { get; init; }
+
     public double MaxTemp { get; set; }
+
     public double MinTemp { get; set; }
     public double Precipitation { get; init; }
     public List<DailyForecast> DailyForecasts { get; init; } = [];
 }
+// ReSharper restore UnusedAutoPropertyAccessor.Global
