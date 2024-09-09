@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mars.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <Label
+                Text="Mars Weather"
+                FontSize="60"
+                FontAttributes="Bold"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+            
+            <Image
+                x:Name="WeatherIcon"
+                HeightRequest="150"
+                Aspect="AspectFit"
+                SemanticProperties.Description="Current weather icon" />
+            
+            <Label
+                x:Name="Temperature"
+                Text=""
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level2" />
+
+            <Label
+                x:Name="Humidity"
+                Text=""
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level2" />
+
+            <Label
+                x:Name="Condition"
+                Text=""
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level2" />
+
+            <Label
+                x:Name="WindSpeed"
+                Text=""
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level2" />
+            
+            <Label
+                x:Name="ErrorText"
+                Text=""
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level2" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
