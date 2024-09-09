@@ -7,7 +7,9 @@
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
-            Spacing="25">
+            Spacing="25"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand">
 
             <Label
                 Text="Mars Weather"
@@ -15,42 +17,52 @@
                 FontAttributes="Bold"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
-            
+
             <Image
                 x:Name="WeatherIcon"
                 HeightRequest="150"
                 Aspect="AspectFit"
                 SemanticProperties.Description="Current weather icon" />
-            
+
             <Label
                 x:Name="Temperature"
-                Text=""
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level2" />
 
             <Label
                 x:Name="Humidity"
-                Text=""
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level2" />
 
             <Label
                 x:Name="Condition"
-                Text=""
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level2" />
 
             <Label
                 x:Name="WindSpeed"
-                Text=""
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level2" />
-            
+
             <Label
-                x:Name="ErrorText"
-                Text=""
+                x:Name="MinTemp"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level2" />
+
+            <Label
+                x:Name="MaxTemp"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level2" />
+
+            <Label
+                x:Name="Precipitation"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level2" />
+            <Label
+                x:Name="Status"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level2" />
+
         </VerticalStackLayout>
     </ScrollView>
 
