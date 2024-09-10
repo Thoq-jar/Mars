@@ -20,7 +20,7 @@
             Spacing="20"
             HorizontalOptions="Center"
             VerticalOptions="CenterAndExpand">
-
+            
             <Label
                 x:Name="PageTitle"
                 Text="Mars Weather"
@@ -29,6 +29,20 @@
                 HorizontalOptions="Center"
                 VerticalOptions="Center" />
 
+            <!-- ReSharper disable once ObsoleteElement -->
+            <Frame
+                BackgroundColor="Transparent"
+                CornerRadius="20"
+                HasShadow="True"
+                Padding="0">
+                <SearchBar
+                    x:Name="LocationSearchBar"
+                    Placeholder="Enter location"
+                    HorizontalOptions="FillAndExpand"
+                    SearchButtonPressed="OnSearchEvent"
+                    BackgroundColor="DarkSlateBlue" />
+            </Frame>
+            
             <Label
                 x:Name="Status"
                 FontSize="15"

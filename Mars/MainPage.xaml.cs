@@ -88,6 +88,113 @@ public partial class MainPage
         }
     }
 
+    private async void OnSearchEvent(object sender, EventArgs e)
+    {
+        var location = LocationSearchBar.Text;
+        if (!string.IsNullOrWhiteSpace(location))
+        {
+            if (location.Trim().ToLower() == "my location")
+            {
+                var currentLocation = await GetLocationAsync();
+                if (currentLocation != null)
+                {
+                    await GetSearchData($"{currentLocation.Value.Item1},{currentLocation.Value.Item2}");
+                    Status.Text = "";
+                }
+                else
+                {
+                    Status.Text = "Unable to retrieve current location.";
+                }
+            }
+            else
+            {
+                await GetSearchData(location);
+                Status.Text = "";
+            }
+        }
+        else
+        {
+            Status.Text = "Please enter a location.";
+        }
+    }
+    
+    private async Task<(double, double)?> GeoCode(string location)
+    {
+        const string nominatimApiUrl = "https://nominatim.openstreetmap.org/search";
+    
+        try
+        {
+            var geocodingUrl = $"{nominatimApiUrl}?q={Uri.EscapeDataString(location)}&format=json&addressdetails=1&limit=1";
+            var response = await _httpClient.GetStringAsync(geocodingUrl);
+            var locationData = JArray.Parse(response);
+
+            if (locationData.Count > 0)
+            {
+                var lat = locationData[0]["lat"]!.Value<double>();
+                var lng = locationData[0]["lon"]!.Value<double>();
+                return (lat, lng);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error retrieving coordinates: {ex.Message}");
+        }
+
+        return null;
+    }
+    
+    private async Task GetSearchData(string location)
+    {
+        try
+        {
+            var coordinates = await GeoCode(location);
+            if (coordinates != null)
+            {
+                var weatherData = await GetWeatherDataAsync(coordinates.Value.Item1, coordinates.Value.Item2);
+                if (weatherData != null)
+                {
+                    var (backgroundColor, fontColor) = GetColors(weatherData.WeatherCondition);
+
+                    Precipitation.Text = $"Precipitation: {weatherData.Precipitation}mm";
+                    Temperature.Text = $"Temperature: {weatherData.Temperature:F2}°F";
+                    Humidity.Text = $"Humidity: {weatherData.Humidity}%";
+                    WindSpeed.Text = $"Wind Speed: {weatherData.WindSpeed} m/s";
+                    Condition.Text = $"Condition: {weatherData.WeatherCondition}";
+                    ForecastLabel.Text = "7-Day Forecast";
+
+                    BackgroundColor = backgroundColor;
+                    PageTitle.TextColor = fontColor;
+                    Status.TextColor = fontColor;
+                    Precipitation.TextColor = fontColor;
+                    Temperature.TextColor = fontColor;
+                    Humidity.TextColor = fontColor;
+                    WindSpeed.TextColor = fontColor;
+                    Condition.TextColor = fontColor;
+                    ForecastLabel.TextColor = fontColor;
+
+                    foreach (var forecast in weatherData.DailyForecasts)
+                    {
+                        forecast.FontColor = fontColor;
+                    }
+                    
+                    ForecastCollectionView.ItemsSource = weatherData.DailyForecasts;
+                }
+                else
+                {
+                    Status.Text = "Error fetching weather data.";
+                }
+            }
+            else
+            {
+                Status.Text = "Unable to retrieve coordinates for the location.";
+            }
+        }
+        catch (Exception ex)
+        {
+            Status.Text = $"Error fetching weather data: {ex.Message}";
+        }
+    }
+    
     private async Task<(double, double)?> GetLocationAsync()
     {
         const string ipApiUrl = "https://ipinfo.io/json";
